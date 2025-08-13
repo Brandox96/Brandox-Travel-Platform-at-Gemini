@@ -1,0 +1,215 @@
+// #################### HTML TEMPLATES FOR DASHBOARDS ####################
+const dashboardTemplates = {
+    'dashboard-cliente': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-64 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">BRANDOX</h1></div><nav class="flex-1 px-4 py-6 space-y-2"><a href="#" data-toggle="tab" data-target="cliente-view-dashboard" class="sidebar-link active flex items-center py-2 px-4 rounded-lg">Dashboard</a><a href="#" data-toggle="tab" data-target="cliente-view-viagens" class="sidebar-link flex items-center py-2 px-4 rounded-lg">Minhas Viagens</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4"><div class="flex items-center justify-between"><div><h2 class="text-2xl font-bold text-white">Olá, Cliente!</h2></div><button class="action-btn-dash bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg flex items-center">Nova Cotação</button></div></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><div id="cliente-view-dashboard" class="dashboard-content-view active"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="bg-gray-800 rounded-xl p-6"><h3 class="text-gray-400 text-sm">Economia Total</h3><p class="text-3xl font-bold text-white">R$ 4.782,50</p></div><div class="bg-gray-800 rounded-xl p-6"><h3 class="text-gray-400 text-sm">Sua Categoria</h3><p class="text-2xl font-bold text-white">Gold</p></div><div class="bg-gray-800 rounded-xl p-6"><h3 class="text-gray-400 text-sm">Pódio de Emissões</h3><p class="text-2xl font-bold text-white">#12 Lugar</p></div></div></div><div id="cliente-view-viagens" class="dashboard-content-view"><h2 class="text-2xl font-bold text-white">Minhas Viagens</h2><p class="text-gray-400 mt-2">Conteúdo de viagens aqui.</p></div></main></div></div>`,
+    'dashboard-admin': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-72 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">BRANDOX ADMIN</h1></div><nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto"><a href="#" data-toggle="tab" data-target="admin-view-geral" class="sidebar-link active flex items-center py-2.5 px-4 rounded-lg">Visão Geral</a><a href="#" data-toggle="tab" data-target="admin-view-usuarios" class="sidebar-link flex items-center py-2.5 px-4 rounded-lg">Gestão de Usuários</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4 flex justify-between items-center"><h2 class="text-2xl font-bold text-white">Painel do Administrador</h2></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><div id="admin-view-geral" class="dashboard-content-view active"><div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"><div class="bg-gray-800 p-5 rounded-xl"><h4 class="text-gray-400">Faturamento (Mês)</h4><p class="text-3xl font-bold text-green-400 mt-1">R$ 152.8k</p></div><div class="bg-gray-800 p-5 rounded-xl"><h4 class="text-gray-400">Lucro (Mês)</h4><p class="text-3xl font-bold text-blue-400 mt-1">R$ 21.4k</p></div><div class="bg-gray-800 p-5 rounded-xl"><h4 class="text-gray-400">Novos Clientes</h4><p class="text-3xl font-bold text-white mt-1">32</p></div><div class="bg-gray-800 p-5 rounded-xl"><h4 class="text-gray-400">Tarefas Pendentes</h4><p class="text-3xl font-bold text-yellow-400 mt-1">18</p></div></div><div class="bg-gray-800 p-6 rounded-xl"><h3 class="font-bold text-white mb-4">Receita vs. Custo</h3><canvas id="financialChart"></canvas></div></div><div id="admin-view-usuarios" class="dashboard-content-view"><h2 class="text-2xl font-bold text-white">Gestão de Usuários</h2><p class="text-gray-400 mt-2">Tabela de usuários aqui.</p></div></main></div></div>`,
+    'dashboard-funcionario': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-64 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">BRANDOX</h1></div><nav class="flex-1 px-4 py-6 space-y-2"><a href="#" class="sidebar-link active flex items-center py-2 px-4 rounded-lg">Cotações</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4 flex justify-between items-center"><div><h2 id="header-title" class="text-2xl font-bold text-white">Painel de Cotação</h2></div><div class="flex items-center space-x-4"><label for="department-switcher" class="text-gray-400 text-sm">Visão:</label><select id="department-switcher" class="bg-gray-700 rounded-md p-2 text-white text-sm"><option value="cotacao" selected>Cotação</option><option value="emissao">Emissão</option><option value="financeiro">Financeiro</option></select></div></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><h3 class="text-xl font-bold text-white mb-4">Fila de Cotações</h3><div class="space-y-4"><div class="bg-gray-800 rounded-lg p-4 removable-on-action"><div class="flex justify-between items-start"><div><p class="font-bold text-white">Voo GRU ✈️ JFK</p></div><button class="action-btn-dash bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm" data-toast="Tarefa assumida por você!">Pegar Tarefa</button></div></div></div></main></div></div>`,
+    'dashboard-colaborador': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-64 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">BRANDOX</h1></div><nav class="flex-1 px-4 py-6 space-y-2"><a href="#" class="sidebar-link active flex items-center py-2 px-4 rounded-lg">Visão Geral</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4"><div><h2 class="text-2xl font-bold text-white">Olá, João Silva</h2><p class="text-sm text-gray-400">Colaborador da <span class="font-bold text-blue-400">TechCorp</span>.</p></div></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><div class="mb-6"><h3 class="text-xl font-bold text-white mb-4">Cotações Aguardando Aprovação</h3><div class="bg-gray-800 rounded-lg p-4"><div class="flex items-center justify-between"><div><p class="font-bold text-white">Voo GRU ✈️ SFO</p></div><p class="text-sm text-yellow-400 font-semibold">Pendente</p></div></div></div></main></div></div>`,
+    'dashboard-gestor': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-72 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">TECHCORP</h1></div><nav class="flex-1 px-4 py-6 space-y-2"><a href="#" data-toggle="tab" data-target="gestor-view-aprovacoes" class="sidebar-link active flex items-center py-2.5 px-4 rounded-lg">Aprovações</a><a href="#" data-toggle="tab" data-target="gestor-view-gastos" class="sidebar-link flex items-center py-2.5 px-4 rounded-lg">Relatório de Gastos</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4"><h2 class="text-2xl font-bold text-white">Painel do Gestor</h2></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><div id="gestor-view-aprovacoes" class="dashboard-content-view active"><div class="bg-gray-800 rounded-lg p-5 removable-on-action"><div class="flex justify-between items-start mb-3"><div><p class="font-bold text-white text-lg">Voo GRU ✈️ SFO</p><p class="text-sm text-gray-400">Solicitante: João Silva</p></div><p class="text-xl font-bold text-white">R$ 8.950,00</p></div><div class="flex items-center justify-end space-x-3"><button class="action-btn-dash bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg" data-toast="Solicitação Recusada.">Recusar</button><button class="action-btn-dash bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg" data-toast="Solicitação Aprovada!">Aprovar</button></div></div></div><div id="gestor-view-gastos" class="dashboard-content-view"><div class="bg-gray-800 p-6 rounded-xl mt-6"><h3 class="font-bold text-white mb-4">Gastos por Departamento</h3><canvas id="departmentChart"></canvas></div></div></main></div></div>`,
+    'dashboard-demo': `
+    <div class="flex h-screen bg-gray-900"><aside class="sidebar w-64 flex-shrink-0 flex flex-col"><div class="h-20 flex items-center justify-center border-b border-gray-800"><h1 class="text-2xl font-bold font-display tracking-wider text-white">BRANDOX</h1></div><nav class="flex-1 px-4 py-6 space-y-2"><a href="#" class="sidebar-link active flex items-center py-2 px-4 rounded-lg demo-disabled">Dashboard</a></nav><div class="p-4 border-t border-gray-800"><a href="#" class="logout-btn sidebar-link flex items-center py-2 px-4 rounded-lg mt-2">Sair</a></div></aside><div class="flex-1 flex flex-col overflow-hidden"><header class="bg-gray-900 border-b border-gray-800 p-4"><div><h2 class="text-2xl font-bold text-white">Olá, Visitante!</h2></div></header><main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-900 p-6"><div class="bg-yellow-500/20 border border-yellow-500 text-yellow-300 px-4 py-3 rounded-lg relative mb-6"><strong class="font-bold">Modo Demonstração:</strong><span class="block sm:inline"> Todas as ações estão desabilitadas.</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-gray-800 rounded-xl p-6"><h3 class="text-gray-400 text-sm">Economia Total</h3><p class="text-3xl font-bold text-white">R$ 4.782,50</p></div><div class="bg-gray-800 rounded-xl p-6"><h3 class="text-gray-400 text-sm">Sua Categoria</h3><p class="text-2xl font-bold text-white">Gold</p></div></div></main></div></div>`
+};
+
+// #################### MAIN APP LOGIC ####################
+document.addEventListener('DOMContentLoaded', () => {
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navScrollLinks = document.querySelectorAll('.nav-scroll');
+    const actionButtons = document.querySelectorAll('.action-btn');
+
+    // --- Page Navigation ---
+    function showPage(pageId) {
+        pages.forEach(page => {
+            page.classList.toggle('active', page.id === pageId);
+        });
+        window.scrollTo(0, 0);
+    }
+    
+    // Set initial page
+    showPage('page-landing');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetPage = link.getAttribute('data-target');
+            showPage(targetPage);
+        });
+    });
+
+    // --- Landing Page Scroll ---
+    navScrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+            if (mobileMenu.classList.contains('hidden') === false) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+
+    // --- Mobile Menu ---
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // --- Toast Notification ---
+    const toast = document.getElementById('toast-notification');
+    const toastMessage = document.getElementById('toast-message');
+    function showToast(message, type = 'info') {
+        toastMessage.textContent = message;
+        toast.className = 'fixed bottom-5 right-5 text-white py-3 px-6 rounded-lg shadow-lg z-50'; // Reset classes
+        if (type === 'success') toast.classList.add('bg-green-600');
+        else if (type === 'error') toast.classList.add('bg-red-600');
+        else toast.classList.add('bg-blue-600');
+        
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    actionButtons.forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast('Ação registrada com sucesso!', 'success');
+    }));
+    
+    document.getElementById('contact-form').addEventListener('submit', e => {
+        e.preventDefault();
+        showToast('Mensagem enviada! Entraremos em contato.', 'success');
+        e.target.reset();
+    });
+
+    // --- Login & Signup Logic ---
+    const loginView = document.getElementById('login-view');
+    const signupView = document.getElementById('signup-view');
+    document.getElementById('show-signup').addEventListener('click', () => {
+        loginView.classList.add('hidden');
+        signupView.classList.remove('hidden');
+    });
+    document.getElementById('show-login').addEventListener('click', () => {
+        signupView.classList.add('hidden');
+        loginView.classList.remove('hidden');
+    });
+    
+    document.getElementById('signup-form').addEventListener('submit', e => {
+        e.preventDefault();
+        showToast('Cadastro realizado com sucesso!', 'success');
+        signupView.classList.add('hidden');
+        loginView.classList.remove('hidden');
+        e.target.reset();
+    });
+
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+    loginForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        const users = {
+            'cliente@brandox.com': { pass: 'cliente123', dash: 'page-dashboard-cliente' },
+            'admin@brandoxtravel.com': { pass: 'admin123', dash: 'page-dashboard-admin' },
+            'demo@brandoxtravel.com': { pass: 'demo123', dash: 'page-dashboard-demo' },
+            'funcionario@brandox.com': { pass: 'func123', dash: 'page-dashboard-funcionario' },
+            'colaborador@techcorp.com': { pass: 'colab123', dash: 'page-dashboard-colaborador' },
+            'gestor@techcorp.com': { pass: 'gestor123', dash: 'page-dashboard-gestor' },
+        };
+
+        if (users[email] && users[email].pass === password) {
+            loginError.classList.add('hidden');
+            loadDashboard(users[email].dash);
+            showPage(users[email].dash);
+        } else {
+            loginError.classList.remove('hidden');
+        }
+    });
+    
+    // --- Dashboard Loading & Logic ---
+    function loadDashboard(dashboardId) {
+        const container = document.getElementById(dashboardId);
+        if (container.innerHTML !== '') return; // Already loaded
+
+        const templateName = dashboardId.replace('page-', '');
+        const template = dashboardTemplates[templateName];
+        if(template) {
+            container.innerHTML = template;
+            initializeDashboardScripts(dashboardId);
+        }
+    }
+    
+    function setupDashboardTabs(container) {
+        const links = container.querySelectorAll('[data-toggle="tab"]');
+        const contents = container.querySelectorAll('.dashboard-content-view');
+
+        links.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.dataset.target;
+
+                links.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                contents.forEach(c => {
+                    c.classList.toggle('active', c.id === targetId);
+                });
+            });
+        });
+    }
+
+    function initializeDashboardScripts(dashboardId) {
+        const container = document.getElementById(dashboardId);
+        if (!container) return;
+
+        // Setup internal tabs for dashboards
+        setupDashboardTabs(container);
+        
+        // Logout
+        container.querySelector('.logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('page-landing');
+        });
+
+        // Generic action buttons
+        container.querySelectorAll('.action-btn-dash').forEach(btn => btn.addEventListener('click', e => {
+            e.preventDefault();
+            const message = btn.dataset.toast || 'Ação concluída com sucesso!';
+            showToast(message, 'success');
+            if (btn.closest('.removable-on-action')) {
+                btn.closest('.removable-on-action').style.display = 'none';
+            }
+        }));
+
+        // Specific scripts for charts
+        if (dashboardId === 'page-dashboard-admin') {
+            const ctx = container.querySelector('#financialChart');
+            if(ctx) new Chart(ctx, { type: 'line', data: { labels: ['Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'], datasets: [{ label: 'Receita', data: [65, 72, 89, 110, 135, 152], borderColor: 'rgba(59, 130, 246, 1)', fill: true }, { label: 'Custo', data: [50, 55, 68, 85, 105, 131], borderColor: 'rgba(239, 68, 68, 1)', fill: true }] } });
+        }
+        if (dashboardId === 'page-dashboard-gestor') {
+            const ctx = container.querySelector('#departmentChart');
+            if(ctx) new Chart(ctx, { type: 'doughnut', data: { labels: ['Desenvolvimento', 'Marketing', 'Vendas'], datasets: [{ data: [18500, 11200, 9800], backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(236, 72, 153, 0.8)', 'rgba(16, 185, 129, 0.8)'], }] } });
+        }
+        if (dashboardId === 'page-dashboard-funcionario') {
+            const switcher = container.querySelector('#department-switcher');
+            const title = container.querySelector('#header-title');
+            switcher?.addEventListener('change', e => {
+                const selectedText = e.target.options[e.target.selectedIndex].text;
+                title.textContent = `Painel de ${selectedText}`;
+                showToast(`Visão alterada para ${selectedText}.`);
+            });
+        }
+        if (dashboardId === 'page-dashboard-demo') {
+            container.querySelectorAll('.demo-disabled').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showToast('Esta é uma função de demonstração.');
+                });
+            });
+        }
+    }
+});
