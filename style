@@ -1,0 +1,58 @@
+body {
+    font-family: 'Sora', sans-serif;
+}
+.font-display {
+    font-family: 'Oswald', sans-serif;
+}
+/* Hide pages by default */
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/000000/FFFFFF?text=Brandox+Travel') no-repeat center center;
+    background-size: cover;
+}
+.login-page-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://placehold.co/1920x1080/000000/FFFFFF?text=Brandox+Travel') no-repeat center center;
+    background-size: cover;
+}
+.form-container {
+    background-color: rgba(17, 24, 39, 0.9);
+    backdrop-filter: blur(10px);
+}
+.sidebar { 
+    background-color: #000; 
+}
+.sidebar-link { 
+    transition: all 0.2s ease-in-out; 
+}
+.sidebar-link:hover, .sidebar-link.active { 
+    background-color: #1F2937; 
+    color: #3B82F6; 
+    border-right: 3px solid #3B82F6; 
+}
+
+/* Dashboard Content Views */
+.dashboard-content-view { display: none; }
+.dashboard-content-view.active { display: block; }
+
+/* Toast Notification */
+#toast-notification {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(150%);
+    opacity: 0;
+    visibility: hidden;
+}
+#toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1F2937; }
+::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #6B7280; }
