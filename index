@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandox Travel - Gestão Inteligente de Viagens</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 text-white py-3 px-6 rounded-lg shadow-lg z-50">
+        <p id="toast-message"></p>
+    </div>
+
+    <!-- #################### LANDING PAGE #################### -->
+    <div id="page-landing" class="page">
+        <!-- Header -->
+        <header class="bg-black/80 backdrop-blur-sm fixed w-full z-40 top-0">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold font-display tracking-wider">BRANDOX TRAVEL</h1>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#contato-section" class="nav-scroll hover:text-blue-400 transition-colors">Contato</a>
+                    <button data-target="page-login" class="nav-link bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-lg transition-colors">Login</button>
+                    <a href="#demonstracao-section" class="nav-scroll bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Agendar Demonstração</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">&#9776;</button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-black/90 px-6 pb-4">
+                <a href="#contato-section" class="nav-scroll block py-2 hover:text-blue-400">Contato</a>
+                <button data-target="page-login" class="nav-link w-full text-left py-2 mt-2 bg-gray-700 hover:bg-gray-600 text-center rounded-lg">Login</button>
+                <a href="#demonstracao-section" class="nav-scroll block py-2 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-center rounded-lg">Agendar Demonstração</a>
+            </div>
+        </header>
+        <main>
+            <section class="hero-section h-screen flex items-center justify-center text-center pt-16">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-4xl md:text-6xl font-display text-white uppercase tracking-widest">Sua viagem, sem complicações.</h2>
+                    <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-gray-300">Somos seu <span class="font-bold text-blue-400">concierge de viagens</span>. Organizamos tudo, do início ao fim, para que você foque no seu compromisso.</p>
+                    <a href="#demonstracao-section" class="nav-scroll mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">Descubra como podemos ajudar</a>
+                </div>
+            </section>
+            <section id="servicos-section" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6 text-center">
+                    <h3 class="text-3xl md:text-4xl font-display uppercase tracking-wider">Especialistas em Viagens com Propósito</h3>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-400">Não importa o seu compromisso, temos a solução logística.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform"><h4 class="font-bold text-lg text-blue-400">Concurseiros</h4></div>
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform"><h4 class="font-bold text-lg text-blue-400">Intercâmbio</h4></div>
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform"><h4 class="font-bold text-lg text-blue-400">Empresas</h4></div>
+                        <div class="bg-gray-900 p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform"><h4 class="font-bold text-lg text-blue-400">Artistas e Eventos</h4></div>
+                    </div>
+                </div>
+            </section>
+            <section id="demonstracao-section" class="py-20 bg-gray-800">
+                <div class="container mx-auto px-6">
+                    <div class="bg-gray-900 rounded-xl shadow-2xl p-8 md:p-12 lg:flex lg:items-center lg:justify-between">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-3xl md:text-4xl font-display uppercase tracking-wider">Otimize suas viagens agora.</h3>
+                            <p class="mt-4 text-gray-400">Agende uma demonstração de 30 minutos e veja como nossa plataforma pode centralizar e automatizar a gestão de suas viagens e despesas.</p>
+                            <div class="mt-6"><a href="#" class="action-btn inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">Agendar Demonstração Gratuita</a></div>
+                        </div>
+                        <div id="contato-section" class="mt-10 lg:mt-0 lg:w-2/5">
+                            <h4 class="text-xl font-bold text-center mb-4">Ou entre em contato</h4>
+                            <form id="contact-form" class="space-y-4">
+                                <input type="text" placeholder="Seu nome completo" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <input type="email" placeholder="Seu melhor e-mail" class="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <button type="submit" class="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition-colors">Enviar Mensagem</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-black text-gray-400 py-12">
+            <div class="container mx-auto px-6 text-center">
+                <p>&copy; 2024 Brandox Travel. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- #################### LOGIN / SIGNUP PAGE #################### -->
+    <div id="page-login" class="page login-page-bg min-h-screen flex items-center justify-center">
+        <div class="form-container p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <div id="login-view">
+                <div class="text-center mb-8"><h1 class="text-3xl font-bold font-display tracking-wider text-white">BRANDOX TRAVEL</h1><p class="text-gray-400 mt-2">Acesse sua conta.</p></div>
+                <form id="login-form" class="space-y-6">
+                    <input type="email" id="login-email" placeholder="Seu e-mail" required class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="password" id="login-password" placeholder="Sua senha" required class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div id="login-error" class="hidden text-red-400 text-sm">Email ou senha inválidos.</div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">Entrar</button>
+                </form>
+                <p class="mt-8 text-center text-sm text-gray-400">Não tem uma conta? <button id="show-signup" class="font-medium text-blue-500 hover:text-blue-400">Crie uma agora</button></p>
+                <button data-target="page-landing" class="nav-link mt-4 w-full text-center text-sm text-gray-400 hover:text-white">Voltar para a Home</button>
+            </div>
+            <div id="signup-view" class="hidden">
+                <div class="text-center mb-8"><h1 class="text-3xl font-bold font-display tracking-wider text-white">CRIE SUA CONTA</h1></div>
+                <form id="signup-form" class="space-y-4">
+                    <input type="text" placeholder="Nome Completo" required class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white">
+                    <input type="email" placeholder="Seu e-mail" required class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white">
+                    <input type="password" placeholder="Crie uma senha" required class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">Finalizar Cadastro</button>
+                </form>
+                <p class="mt-8 text-center text-sm text-gray-400">Já tem uma conta? <button id="show-login" class="font-medium text-blue-500 hover:text-blue-400">Faça login</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- #################### ALL DASHBOARDS WRAPPER #################### -->
+    <div id="page-dashboard-cliente" class="page"></div>
+    <div id="page-dashboard-admin" class="page"></div>
+    <div id="page-dashboard-funcionario" class="page"></div>
+    <div id="page-dashboard-colaborador" class="page"></div>
+    <div id="page-dashboard-gestor" class="page"></div>
+    <div id="page-dashboard-demo" class="page"></div>
+
+    <!-- External JS -->
+    <script src="script.js" defer></script>
+</body>
+</html>
